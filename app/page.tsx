@@ -1,14 +1,16 @@
 'use client';
 
-import CurvedArrow from '@/components/svg/CurvedArrow';
-import StraightArrow from '@/components/svg/StraightArrow';
+import CurvedArrow from '@/components/svg/curved-arrow';
+import StraightArrow from '@/components/svg/straight-arrow';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const hiddenElementClass = 'opacity-0 pointer-events-none';
   const visibleElementClass = 'opacity-100 pointer-events-auto';
+  const { theme } = useTheme();
 
   const [todoInputValue, setTodoInputValue] = useState('');
   const [showTutorial, setShowTutorial] = useState(true);
@@ -39,15 +41,15 @@ export default function Home() {
     <div className='flex flex-col items-center justify-center gap-4 p-4 h-screen'>
       <div className='relative flex items-center justify-center'>
         <h1 className='text-2xl text-center md:text-5xl'>Add your Todo Now</h1>
-        <CurvedArrow className={`absolute left-full ml-2 md:ml-4 h-8 md:h-16 transition-opacity duration-500 ease-out  ${showCurvedArrow ? visibleElementClass : hiddenElementClass}`} scale={0.5} fill='#ffffff' />
+        <CurvedArrow className={`absolute left-full ml-2 md:ml-4 h-8 md:h-16 transition-opacity duration-500 ease-out  ${showCurvedArrow ? visibleElementClass : hiddenElementClass} ${theme === "dark" && "fill-white"}`} scale={0.5} />
       </div>
-      <Input name='todo input' className={`w-4/5 md:w-1/2  transition-opacity duration-500 ease-out ${showTodoInput ? visibleElementClass : hiddenElementClass}`}
+      <Input name='todo input' className={`w-4/5 md:w-1/2 dark:fill-white  transition-opacity duration-500 ease-out ${showTodoInput ? visibleElementClass : hiddenElementClass}`}
         placeholder='By typing here'
         value={todoInputValue}
         onChange={(e) => handleTodoInputChange(e.target.value)}
         onKeyUp={() => detectEndOfTyping()}
       />
-      <StraightArrow className={`h-8 fill-white rotate-180 ${showSubmitButton ? visibleElementClass : hiddenElementClass}`} />
+      <StraightArrow className={`h-8 rotate-180 dark:fill-white ${showSubmitButton ? visibleElementClass : hiddenElementClass} ${theme === "dark" && "fill-white"} `} />
       <Button className={`${showSubmitButton ? visibleElementClass : hiddenElementClass}`} variant="outline" title='Add Todo'>Add Todo</Button>
     </div>
   )
