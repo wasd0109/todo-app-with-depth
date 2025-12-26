@@ -109,7 +109,7 @@ export default function Home() {
 
   const handlePositionTransitionClass = () => {
     return `${opacityTransitionClass} ${todoListItems.length === 0 ?
-      'h-[90vh]' : 'h-60'}`;
+      'h-[90svh]' : 'h-60'}`;
   };
 
   const handleFillSvg = (currentTheme: string | undefined) => {
