@@ -51,7 +51,7 @@ export default function Home() {
   const [todoInputValue, setTodoInputValue] = useState('');
   const [todoListItems, setTodoListItems] = useState<string[]>([]);
   const [showTutorial, setShowTutorial] = useState(true);
-  const [showTransitionFlag, setShowTransitionFlag] = useState(testTransitionFlag);
+  const [showTransitionFlag, setShowTransitionFlag] = useState(tutorialTransitionFlag);
 
   const { theme } = useTheme();
 
