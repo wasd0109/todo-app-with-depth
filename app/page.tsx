@@ -128,13 +128,21 @@ export default function Home() {
           placeholder='By typing here'
           value={todoInputValue}
           onChange={(e) => handleTodoInputChange(e.target.value)}
-          onKeyUp={() => detectEndOfTyping(1000, () => scheduleTransition(submitTransitionDefs))}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              handleAddTodo();
+            } else {
+              detectEndOfTyping(1000, () => scheduleTransition(submitTransitionDefs))
+            }
+          }}
         />
         <StraightArrow className={`h-8 rotate-180 dark:fill-white ${handleOpacityTransitionClass("submitArrow")} ${handleFillSvg(theme)}`} />
         <Button
           className={`${handleOpacityTransitionClass("submitButton")}`} variant="outline"
           onClick={handleAddTodo}
-          title='Add Todo'>Add Todo</Button>
+          title='Add Todo'>
+          Add Todo
+        </Button>
       </div>
       <TodoList items={todoListItems} className={`${handleOpacityTransitionClass("todoList")}`} />
     </div>
